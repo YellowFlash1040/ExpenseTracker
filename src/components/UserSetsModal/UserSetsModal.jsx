@@ -50,7 +50,7 @@ export const UserSetsModal = ({ closeModal }) => {
     try {
       const avatarArr = userAvatar.split("avatar/")
       const avatarId = avatarArr[1].split(".")[0]
-      console.log(avatarId)
+      // console.log(avatarId)
       await dispatch(deleteUsersAvatarThunk(avatarId))
       setAvatar(null)
     } catch (e) {

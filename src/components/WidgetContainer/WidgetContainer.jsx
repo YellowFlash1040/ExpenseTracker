@@ -6,7 +6,7 @@ export const WidgetContainer = ({ className, children, moneyDeal }) => {
   const navigate = useNavigate()
 
   const handle = () => {
-    console.log(moneyDeal);
+    // console.log(moneyDeal);
     if (moneyDeal === "expenses" || moneyDeal === "incomes")
       navigate(`/transactions/${moneyDeal}`)
   }
