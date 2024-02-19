@@ -17,7 +17,7 @@ import "rc-time-picker/assets/index.css"
 import moment from "moment"
 import "./TimePicker/TimePicker.css"
 import "./DatePicker/DatePicker.css"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { createTransactionThunk } from "@/redux/transactions/operations"
 
 import icons from "icons/icons.svg"
@@ -29,6 +29,7 @@ import { toast } from "react-toastify"
 
 import Clock from "icons/Clock.svg?react"
 import CalendarAccent from "icons/CalendarAccent.svg?react"
+import { selectCurrency } from "@/redux/user/slice"
 
 export const TransactionForm = ({
   actionType = TransactionFormActionType.Add,
@@ -44,13 +45,14 @@ export const TransactionForm = ({
   Category = { _id: "", categoryName: "" },
   Sum = "",
   Comment = "",
-  currency = CurrencyType.UAH,
   onSubmit = data => console.log(data),
 }) => {
   const dispatch = useDispatch()
 
   const [isModalWindowOpened, setIsModalWindowOpened] = useState(false)
   const [activeCategory, setActiveCategory] = useState(Category._id)
+
+  const currency = useSelector(selectCurrency)
 
   const schema = yup.object({
     [TransactionFormFields.TransactionType]: yup.string().required(),
