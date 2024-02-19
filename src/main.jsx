@@ -14,14 +14,12 @@ import "overlayscrollbars/overlayscrollbars.css"
 import "./index.css"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <App />
-          <ToastContainer />
-        </PersistGate>
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+        <ToastContainer />
+      </PersistGate>
+    </Provider>
+  </BrowserRouter>,
 )

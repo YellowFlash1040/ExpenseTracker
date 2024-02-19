@@ -1,5 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "../../axiosConfig/expenseTrackerApi";
+import { fetchTransactionsThunk } from "../transactions/operations";
+import TransactionType from "@/constants/TransactionType";
 
 export const createCategoryThunk = createAsyncThunk(
   "create a category",
@@ -32,6 +34,14 @@ export const updateCategoryThunk = createAsyncThunk(
       const { data } = await api.patch(`/categories/${id}`, {
         categoryName: newName,
       });
+
+      thunkAPI.dispatch(
+        fetchTransactionsThunk({
+          type: TransactionType.Expense + "s",
+          date: "",
+        })
+      );
+
       return { ...data, type };
     } catch (error) {
       // console.log(error.message);
