@@ -10,6 +10,8 @@
   border: 1px solid var(--grey-20);
 
   height: 42px;
+
+  transition: border 250ms ease-in-out;
 }
 
 .inputField:focus,
