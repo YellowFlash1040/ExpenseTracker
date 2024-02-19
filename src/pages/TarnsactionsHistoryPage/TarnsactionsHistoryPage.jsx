@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { selectTransactionsTotal } from "@/redux/transactions/slice"
 import {
@@ -10,10 +10,15 @@ import {
 import styles from "./TarnsactionsHistoryPage.module.css"
 import { TransactionsTotal } from "@/components/TransactionsTotal/TransactionsTotal"
 import clsx from "clsx"
+import validTransactionTypes from "@/constants/routes/ValidTransactionTypes"
 
 const TarnsactionsHistoryPage = () => {
   const { transactionsType } = useParams()
   const { expenses, incomes } = useSelector(selectTransactionsTotal)
+
+  if (!validTransactionTypes.includes(transactionsType)) {
+    return <Navigate to='/transactions/history/expenses' />
+  }
 
   return (
     <>

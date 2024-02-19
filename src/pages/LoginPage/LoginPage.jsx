@@ -29,7 +29,6 @@ const LoginPage = () => {
   const onSubmit = async data => {
     try {
       await dispatch(loginThunk(data))
-      navigate("/transactions/expenses")
     } catch (error) {
       toast.error(`Something went wrong, please try again`)
     }

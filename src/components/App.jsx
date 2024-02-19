@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Navigate, Route, Routes } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { lazy, useEffect } from "react"
 
@@ -33,9 +33,11 @@ function App() {
         <Route
           index
           element={
-            <PublicRoute>
+            isLoggedIn ? (
+              <Navigate to='/transactions/expenses' />
+            ) : (
               <WelcomePage />
-            </PublicRoute>
+            )
           }
         />
         <Route
@@ -71,6 +73,8 @@ function App() {
           }
         />
       </Route>
+
+      <Route path='*' element={<Navigate to='/' />} />
     </Routes>
   )
 }

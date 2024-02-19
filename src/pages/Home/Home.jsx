@@ -2,11 +2,19 @@ import ExpensesMain from "@/components/ExpensesCategories/ExpensesMain"
 import welocomeStyles from "../WelcomePage/WelcomePage.module.css"
 import homeStyles from "./Home.module.css"
 import { ExpensesAndIncomes } from "@/components/ExpensesAndIncomes/ExpensesAndIncomes"
-import { useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import { TransactionForm } from "@/components/TransactionForm/TransactionForm"
+import validTransactionTypes from "@/constants/routes/ValidTransactionTypes"
+
 const Home = () => {
   const { transactionsType } = useParams()
-  
+
+  if (transactionsType === "history" || transactionsType === "history/") {
+    return <Navigate to='/transactions/history/expenses' />
+  } else if (!validTransactionTypes.includes(transactionsType)) {
+    return <Navigate to='/transactions/expenses' />
+  }
+
   return (
     <div className={homeStyles.contianer}>
       <div className={homeStyles.leftColumn}>
