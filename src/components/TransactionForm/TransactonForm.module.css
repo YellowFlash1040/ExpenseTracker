@@ -50,6 +50,10 @@
   cursor: pointer;
 }
 
+.label:hover .customRadioButton {
+  border-color: #0ef387;
+}
+
 .hiddenRadioButton {
   position: absolute;
   width: 1px;
@@ -78,7 +82,8 @@
   display: block;
   position: relative;
 
-  transition: border-color 100ms ease-in-out;
+  /* transition: border-color 100ms ease-in-out; */
+  transition: border-color 250ms ease-in-out;
 }
 
 .hiddenRadioButton:checked + .customRadioButton {
@@ -159,6 +164,8 @@
   color: #fafafa;
 
   outline: none;
+
+  transition: border 250ms ease-in-out;
 }
 
 .sharedTextFieldStyles:hover,
@@ -358,7 +365,7 @@
   top: 10px !important;
   right: 11px !important;
   padding: 0 !important;
-  /* pointer-events: none; */
+  pointer-events: none;
 }
 
 @media only screen and (min-width: 768px) {
