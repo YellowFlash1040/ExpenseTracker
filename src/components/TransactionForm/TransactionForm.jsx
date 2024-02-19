@@ -128,7 +128,7 @@ export const TransactionForm = ({
       dispatch(createTransactionThunk(data))
         .unwrap()
         .then(() => {
-          /* toast.success("New transaction added successfully!") */
+          toast.success("New transaction added successfully!")
           resetForm()
         })
         .catch(error => toast.error(error))
@@ -142,17 +142,18 @@ export const TransactionForm = ({
   }
 
   const resetForm = () => {
+    const lastTransaction_TransactionType = getValues(
+      TransactionFormFields.TransactionType,
+    )
+
     reset()
 
     setValue(TransactionFormFields.Date, new Date().toISOString().split("T")[0])
-    // if (!Time) {
-    //   setValue(TransactionFormFields.Time, moment());
-    // }
     setValue(TransactionFormFields.Time, moment())
-    // setValue(
-    //   TransactionFormFields.Time,
-    //   new Date().toISOString().split("T")[1].split(":").slice(0, 2).join(":")
-    // );
+    setValue(
+      TransactionFormFields.TransactionType,
+      lastTransaction_TransactionType,
+    )
   }
 
   const handleApproveCategory = category => {
@@ -245,14 +246,6 @@ export const TransactionForm = ({
                 control={control}
                 render={({ field }) => (
                   <TimePicker
-                    // inputIcon={
-                    //   <Clock
-                    //     className={clsx(
-                    //       stylesIcon.timeFieldIcon,
-                    //       styles.clockIcon,
-                    //     )}
-                    //   />
-                    // }
                     clearIcon={
                       <Clock
                         className={clsx(
@@ -263,6 +256,9 @@ export const TransactionForm = ({
                     }
                     value={field.value}
                     onChange={value => {
+                      if (value === null) {
+                        value = moment("00:00", "HH:mm")
+                      }
                       field.onChange(value)
                     }}
                   />
@@ -280,6 +276,7 @@ export const TransactionForm = ({
               })}
               type='text'
               placeholder='Different'
+              autoComplete='off'
               id='categoryTextBox'
               onClick={handleCategoryFieldOnClickOnFocus}
               onFocus={handleCategoryFieldOnClickOnFocus}
