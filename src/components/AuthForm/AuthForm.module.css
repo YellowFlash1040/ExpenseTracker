@@ -141,6 +141,8 @@
   letter-spacing: 0%;
   padding-left: 18px;
   color: var(--error);
+
+  position: absolute;
 }
 .valid {
   margin-top: 4px;
@@ -150,6 +152,8 @@
   letter-spacing: 0%;
   padding-left: 18px;
   color: var(--main-green);
+
+  position: absolute;
 }
 
 .inputSuccess {
