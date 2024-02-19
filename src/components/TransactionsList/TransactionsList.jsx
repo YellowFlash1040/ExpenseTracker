@@ -12,6 +12,7 @@ import { Loader, TransactionsListItem } from "@/components"
 
 import styles from "./TransactionsList.module.css"
 import { changeFilterType } from "@/redux/transactionsFilters/slice"
+import { selectIsLoading } from "@/redux/transactions/slice"
 
 export const TransactionsList = () => {
   const dispatch = useDispatch()
@@ -20,7 +21,6 @@ export const TransactionsList = () => {
   const { transactionsType } = useParams()
   const transactions = useSelector(selectFilteredTransactions)
   const date = useSelector(selectFiltersDate)
-  const [showTransactions, setShowTransactions] = useState(false)
   const hasScroll = true
 
   useEffect(() => {
@@ -29,12 +29,12 @@ export const TransactionsList = () => {
     } else {
       dispatch(changeFilterType(transactionsType))
       dispatch(fetchTransactionsThunk({ type: transactionsType, date }))
-        .unwrap()
-        .then(() => setShowTransactions(true))
     }
   }, [dispatch, navigate, transactionsType, date])
 
   useScrollbar(dataWrapper, hasScroll)
+
+  const isLoading = useSelector(selectIsLoading)
 
   return (
     <div className={styles.TransactionsListWrap} ref={dataWrapper}>
@@ -50,7 +50,7 @@ export const TransactionsList = () => {
           </tr>
         </thead>
         <tbody className={styles.transactionsListBody}>
-          {!showTransactions ? (
+          {isLoading ? (
             <tr>
               <td colSpan={6}>
                 <Loader />
