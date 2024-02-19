@@ -16,11 +16,17 @@ const initialState = {
   },
   isLoading: false,
   error: null,
+  transactionsType: null,
 }
 
 const slice = createSlice({
   name: "transactions",
   initialState,
+  reducers: {
+    setTransactionsType(state, { payload }) {
+      state.transactionsType = payload
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(loginThunk.fulfilled, (state, action) => {
@@ -39,7 +45,7 @@ const slice = createSlice({
         )
       })
       .addCase(createTransactionThunk.fulfilled, (state, { payload }) => {
-        if (payload.type === "expenses") {
+        if (payload.type === state.transactionsType) {
           state.list.push(payload)
         }
         state.transactionsTotal[payload.type] += payload.sum
@@ -90,6 +96,7 @@ const slice = createSlice({
     selectTransactionsTotal: state => state.transactionsTotal,
     selectIsLoading: state => state.isLoading,
     selectError: state => state.error,
+    selectTransactionsType: state => state.transactionsType,
   },
 })
 
@@ -100,4 +107,7 @@ export const {
   selectTransactionsTotal,
   selectIsLoading,
   selectError,
+  selectTransactionsType,
 } = slice.selectors
+
+export const { setTransactionsType } = slice.actions

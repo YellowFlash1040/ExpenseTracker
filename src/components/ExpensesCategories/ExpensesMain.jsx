@@ -3,7 +3,10 @@ import styles from "./styles/ExpensesMain.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchTransactionsThunk } from "@/redux/transactions/operations"
 import { ExpensesDonut } from "./ExpensesDonut"
-import { selectTransactions } from "@/redux/transactions/slice"
+import {
+  selectTransactions,
+  setTransactionsType,
+} from "@/redux/transactions/slice"
 import randomColor from "randomcolor"
 import { ExpensesList } from "./ExpensesList"
 import { useParams } from "react-router-dom"
@@ -11,6 +14,11 @@ import { useParams } from "react-router-dom"
 const ExpensesMain = () => {
   const { transactionsType } = useParams()
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(setTransactionsType(transactionsType))
+  }, [dispatch, transactionsType])
+
   const expenses = useSelector(selectTransactions)
   const categorySums = []
   expenses?.forEach(transaction => {
