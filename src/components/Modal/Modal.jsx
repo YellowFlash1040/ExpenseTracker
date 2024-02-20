@@ -41,6 +41,19 @@ export const Modal = ({ children, isOpened, onClose, zIndex = 0 }) => {
     }
   }, [handleKeyPress])
 
+  useEffect(() => {
+    if (isOpened) {
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth
+
+      document.body.style.paddingRight = `${scrollbarWidth}px`
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.paddingRight = 0
+      document.body.style.overflow = "auto"
+    }
+  }, [isOpened])
+
   if (!isOpened) return null
 
   return createPortal(
@@ -55,8 +68,12 @@ export const Modal = ({ children, isOpened, onClose, zIndex = 0 }) => {
         style={{ zIndex: 1000 + zIndex }}
         data-modalwindowid={zIndex}
       >
-        <button className={styles.closeModalButton } style={{zIndex: 1000 + zIndex }} onClick={() => onClose()}>
-          <CloseSure style={{ width: 20, height: 20}} />
+        <button
+          className={styles.closeModalButton}
+          style={{ zIndex: 1000 + zIndex }}
+          onClick={() => onClose()}
+        >
+          <CloseSure style={{ width: 20, height: 20 }} />
         </button>
         {children}
       </div>
