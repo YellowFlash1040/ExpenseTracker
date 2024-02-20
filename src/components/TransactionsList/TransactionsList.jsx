@@ -8,11 +8,13 @@ import {
   selectFiltersDate,
 } from "@/redux/transactionsFilters/selectors"
 import { fetchTransactionsThunk } from "@/redux/transactions/operations"
-import { Loader, TransactionsListItem } from "@/components"
+import { TransactionsListItem } from "@/components"
 
 import styles from "./TransactionsList.module.css"
 import { changeFilterType } from "@/redux/transactionsFilters/slice"
 import { selectIsLoading } from "@/redux/transactions/slice"
+
+import { ThreeDots as Loader } from "react-loader-spinner"
 
 export const TransactionsList = () => {
   const dispatch = useDispatch()
@@ -52,9 +54,16 @@ export const TransactionsList = () => {
         <tbody className={styles.transactionsListBody}>
           {isLoading ? (
             <tr>
-              <td colSpan={6}>
-                <Loader />
-              </td>
+              <div
+                style={{
+                  width: "100%",
+                  position: "absolute",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Loader color='#4fa94d' ariaLabel='three-dots-loading' />
+              </div>
             </tr>
           ) : (
             transactions.map(transaction => (
