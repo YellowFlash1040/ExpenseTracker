@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styles from "./CustomSelect.module.css"
 
 export const CustomSelect = ({ currency, setCurrency }) => {
@@ -14,16 +14,34 @@ export const CustomSelect = ({ currency, setCurrency }) => {
     if (el.value === currency) return el
   })[0].name
 
-  const handleChange = (val) => {
+  const handleChange = val => {
     setCurrency(val)
     setShowList(false)
-}
+  }
+
+  const dropdownRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowList(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
 
   return (
-    <div className={styles.customSelectContainer}>
+    <div className={styles.customSelectContainer} ref={dropdownRef}>
       <div
         className={
-          showList ? `${styles.selectedText} ${styles.active}` : styles.selectedText
+          showList
+            ? `${styles.selectedText} ${styles.active}`
+            : styles.selectedText
         }
         onClick={() => setShowList(prevState => !prevState)}
       >

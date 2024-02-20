@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styles from "./UserBarBtn.module.css"
 import DropIcon from "@/assets/icons/DropIcon.svg?react"
 import UserBarIcon from "@/assets/icons/UserBarIcon.svg?react"
@@ -22,10 +22,28 @@ export const UserBarBtn = () => {
   const altText = name ? name[0] : ""
   const handleChangeBar = () => {
     setIsOpen(!isOpen)
-    setRotated(prev => !prev)
+    setRotated(!rotated)
   }
+
+  const dropdownRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false)
+        setRotated(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
+
   return (
-    <div className={styles.boxAbsolute}>
+    <div className={styles.boxAbsolute} ref={dropdownRef}>
       <div className={styles.wrapperSummary}>
         {avatar ? (
           <img
@@ -48,13 +66,18 @@ export const UserBarBtn = () => {
         >
           <DropIcon className={styles.dropIcon} />
         </button>
-        <ul className={isOpen ? styles.listDrop : styles.listNone}>
+        <ul
+          className={isOpen ? styles.listDrop : styles.listNone}
+          ref={dropdownRef}
+        >
           <li className={styles.itemDrop}>
             <button
-              className={clsx(styles.buttonStyle, {
-                [styles.iconUserHoverActive]: isVisibleProfile,
-              })}
-              onClick={() => setIsVisibleProfile(true)}
+              className={clsx(styles.buttonStyle)}
+              onClick={() => {
+                setIsOpen(false)
+                setRotated(false)
+                setIsVisibleProfile(true)
+              }}
             >
               <UserBarIcon className={styles.iconUserHower} />
               Profile settings
@@ -62,10 +85,12 @@ export const UserBarBtn = () => {
           </li>
           <li className={styles.itemDrop}>
             <button
-              className={clsx(styles.buttonStyle, {
-                [styles.iconUserHoverActive]: isVisibleLogout,
-              })}
-              onClick={() => setIsVisibleLogout(true)}
+              className={clsx(styles.buttonStyle)}
+              onClick={() => {
+                setIsOpen(false)
+                setRotated(false)
+                setIsVisibleLogout(true)
+              }}
             >
               <UserBarLogOutIcon className={styles.iconUserHower} />
               Log out
