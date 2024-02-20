@@ -9,6 +9,7 @@
   position: absolute;
   gap: 12px;
 }
+
 @media only screen and (min-width: 768px) {
   .decorationTab {
     width: 303px;
@@ -18,13 +19,20 @@
 }
 
 .decorationTab {
-  animation: moveX 2s linear 0s infinite alternate,
-    moveY 3.4s linear 0s infinite alternate;
+  animation: moveX 1s linear 0s infinite alternate,
+    moveY 2.2s linear 0s infinite alternate;
+}
+
+@media only screen and (min-width: 768px) {
+  .decorationTab {
+    animation: moveX 2s linear 0s infinite alternate,
+      moveY 3.4s linear 0s infinite alternate;
+  }
 }
 
 @keyframes moveX {
   from {
-    left: calc(100% - 300px);
+    left: calc(100% - 248px);
   }
   to {
     left: 0;
@@ -36,7 +44,27 @@
     top: 0;
   }
   to {
-    top: calc(100% - 120px);
+    top: calc(100% - 81px);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  @keyframes moveX {
+    from {
+      left: 0;
+    }
+    to {
+      left: calc(100% - 303px);
+    }
+  }
+
+  @keyframes moveY {
+    from {
+      top: 0;
+    }
+    to {
+      top: calc(100% - 121px);
+    }
   }
 }
 
