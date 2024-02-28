@@ -46,13 +46,12 @@
   font-size: 14px;
   letter-spacing: -0.02em;
   color: #0c0d0d;
-  &:hover {
-    background-color: var(--main-green-hover);
-    transition: var(--delay);
-  }
+
+  transition: background-color var(--delay) var(--timing-function);
+
+  &:hover,
   &:focus {
     background-color: var(--main-green-hover);
-    transition: var(--delay);
   }
 }
 
@@ -76,13 +75,12 @@
   font-size: 14px;
   letter-spacing: -0.02em;
   color: var(--paper);
-  &:hover {
-    color: var(--grey-50);
-    transition: var(--delay);
-  }
+
+  transition: color var(--delay) var(--timing-function);
+
+  &:hover,
   &:focus {
     color: var(--grey-50);
-    transition: var(--delay);
   }
 }
 
