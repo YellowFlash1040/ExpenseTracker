@@ -54,16 +54,16 @@ export const TransactionsList = () => {
         <tbody className={styles.transactionsListBody}>
           {isLoading ? (
             <tr>
-              <div
-                style={{
-                  width: "100%",
-                  position: "absolute",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <Loader color='#4fa94d' ariaLabel='three-dots-loading' />
-              </div>
+              <td colSpan='100%' style={{ padding: 0 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Loader color='#4fa94d' ariaLabel='three-dots-loading' />
+                </div>
+              </td>
             </tr>
           ) : (
             transactions.map(transaction => (
