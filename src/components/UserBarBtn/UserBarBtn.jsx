@@ -67,7 +67,10 @@ export const UserBarBtn = () => {
           <DropIcon className={styles.dropIcon} />
         </button>
         <ul
-          className={isOpen ? styles.listDrop : styles.listNone}
+          // className={isOpen ? styles.listDrop : styles.listNone}
+          className={clsx(styles.customDropDown, {
+            [styles.visibleCustomDropDown]: isOpen,
+          })}
           ref={dropdownRef}
         >
           <li className={styles.itemDrop}>
