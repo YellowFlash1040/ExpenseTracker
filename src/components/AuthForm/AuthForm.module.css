@@ -52,6 +52,8 @@
   border: transparent;
   font-size: 14px;
   font-weight: 400;
+
+  transition: background-color var(--delay) var(--timing-function);
 }
 @media only screen and (min-width: 768px) {
   .btnLRegister {
@@ -63,7 +65,6 @@
 .btnLRegister:hover,
 .btnLRegister:focus {
   background-color: var(--main-green-hover);
-  transition: background-color var(--delay) var(--timing-function);
 }
 .btnLogin {
   width: 131px;
@@ -74,6 +75,8 @@
   border: transparent;
   font-size: 14px;
   font-weight: 400;
+
+  transition: background-color var(--delay) var(--timing-function);
 }
 @media only screen and (min-width: 768px) {
   .btnLogin {
@@ -86,7 +89,6 @@
 .btnLogin:hover,
 .btnLogin:focus {
   background-color: var(--main-green-hover);
-  transition: background-color var(--delay) var(--timing-function);
 }
 
 .text {
