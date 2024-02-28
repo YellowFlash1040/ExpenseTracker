@@ -16,10 +16,16 @@ export const HeaderComponent = () => {
   const classNamess = classNames(styles.sectionStyle, {
     [styles.stylesIsLogin]: isLoggedIn,
   })
+
   return (
     <section className={classNamess}>
       <div>
-        <Link className={styles.wrapperLogo} to='/transactions/expenses'>
+        <Link
+          className={
+            isLoggedIn ? styles.wrapperLogo : styles.homePageWrapperLogo
+          }
+          to='/transactions/expenses'
+        >
           <LogoIcon className={styles.logo} />
           <h2 className={styles.titleLogo}>ExpenseTracker</h2>
         </Link>
