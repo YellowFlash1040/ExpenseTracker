@@ -78,6 +78,31 @@
   visibility: hidden;
 }
 
+.customDropDown {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid rgba(250, 250, 250, 0.1);
+  border-radius: 15px;
+  width: 217px;
+  height: 86px;
+  background: #0c0d0d;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transform: translateY(8px);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.visibleCustomDropDown {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .buttonStyle {
   display: flex;
   gap: 12px;
