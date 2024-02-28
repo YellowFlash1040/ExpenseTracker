@@ -64,10 +64,12 @@
   border: 1px solid rgba(12, 13, 13, 0.4);
   color: #0c0d0d;
 
+  transition: background-color var(--delay) var(--timing-function),
+    color var(--delay) var(--timing-function);
+
   &:hover,
   &:focus {
     background-color: var(--main-green-hover);
-    transition: var(--delay);
   }
 
   &:global(.active) {

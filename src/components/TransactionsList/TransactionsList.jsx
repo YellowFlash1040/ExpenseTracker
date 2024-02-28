@@ -59,6 +59,10 @@ export const TransactionsList = () => {
                   style={{
                     display: "flex",
                     justifyContent: "center",
+                    transform: "translate(-50%, -50%)",
+                    left: "50%",
+                    top: "50%",
+                    position: "absolute",
                   }}
                 >
                   <Loader color='#4fa94d' ariaLabel='three-dots-loading' />
