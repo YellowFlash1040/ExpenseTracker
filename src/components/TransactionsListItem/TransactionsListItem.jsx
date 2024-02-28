@@ -89,26 +89,24 @@ export const TransactionsListItem = ({ transaction, transactionType }) => {
           {windowSize.innerWidth >= 1440 && "Delete"}
         </button>
 
-        {isOpened && (
-          <Modal isOpened={isOpened} onClose={() => setIsOpened(false)}>
-            <TransactionForm
-              actionType='save'
-              TransactionType={
-                transactionType === "incomes" ? "income" : "expense"
-              }
-              Date={format(transaction.date, "yyyy-MM-dd")}
-              Time={transaction.time}
-              Category={{
-                _id: transaction.category._id,
-                categoryName: transaction.category.categoryName,
-              }}
-              Sum={transaction.sum}
-              Comment={transaction.comment}
-              currency={currency}
-              onSubmit={handleEditTransaction}
-            />
-          </Modal>
-        )}
+        <Modal isOpened={isOpened} onClose={() => setIsOpened(false)}>
+          <TransactionForm
+            actionType='save'
+            TransactionType={
+              transactionType === "incomes" ? "income" : "expense"
+            }
+            Date={format(transaction.date, "yyyy-MM-dd")}
+            Time={transaction.time}
+            Category={{
+              _id: transaction.category._id,
+              categoryName: transaction.category.categoryName,
+            }}
+            Sum={transaction.sum}
+            Comment={transaction.comment}
+            currency={currency}
+            onSubmit={handleEditTransaction}
+          />
+        </Modal>
         <Modal isOpened={isOpenedDel} onClose={() => setIsOpenedDel(false)}>
           <SureModal
             closeModal={setIsOpenedDel}
