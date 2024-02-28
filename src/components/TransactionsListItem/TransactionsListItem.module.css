@@ -9,6 +9,9 @@
   border-radius: 50%;
   border: none;
 
+  transition: background-color var(--delay) var(--timing-function),
+    border var(--delay) var(--timing-function);
+
   .pensilIcon {
     stroke: rgb(12, 13, 13);
   }
