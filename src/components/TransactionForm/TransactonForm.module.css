@@ -6,6 +6,9 @@
   padding: 28px 20px;
 
   font-size: 14px;
+
+  display: flex;
+  justify-content: center;
 }
 
 @media only screen and (min-width: 768px) {
@@ -122,9 +125,6 @@
     left: 50px !important;
   }
   width: 100%;
-}
-.fieldContainer:first-child {
-  width: 242px;
 }
 
 @media screen and (min-width: 768px) {
@@ -363,14 +363,14 @@
 .calendarIcon {
   stroke: #fafafa;
   top: 10px !important;
-  right: 11px !important;
+  right: 14px !important;
   padding: 0 !important;
   pointer-events: none;
 }
 
 @media only screen and (min-width: 768px) {
   .calendarIcon {
-    top: 14px !important;
-    right: 14px !important;
+    top: 13px !important;
+    right: 18px !important;
   }
 }
