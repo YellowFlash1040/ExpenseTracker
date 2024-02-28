@@ -98,9 +98,11 @@
   font-size: 12px;
   letter-spacing: -0.02em;
   color: var(--paper);
+
+  transition: color var(--delay) var(--timing-function);
+
   &:hover {
     color: var(--grey-50);
-    transition: var(--delay);
   }
 }
 
@@ -116,9 +118,11 @@
   height: 44px;
   background-color: var(--main-green);
   margin-top: 20px;
+
+  transition: background-color var(--delay) var(--timing-function);
+
   &:hover {
     background-color: var(--main-green-hover);
-    transition: var(--delay);
   }
 }
 
@@ -142,9 +146,11 @@
   font-size: 12px;
   letter-spacing: -0.02em;
   color: var(--paper);
+
+  transition: color var(--delay) var(--timing-function);
+
   &:hover {
     color: var(--grey-50);
-    transition: var(--delay);
   }
 }
 
