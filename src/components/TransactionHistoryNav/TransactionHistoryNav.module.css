@@ -29,17 +29,17 @@
   width: 125px;
   height: 43px;
 
+  transition: background-color 0.8s ease, color 0.8s ease;
+
   &:hover,
   &:focus,
   &:global(.active) {
     background-color: var(--main-green);
     color: #0c0d0d;
-    transition: 0.8s ease;
   }
 
   &:active {
     background-color: var(--main-green);
     color: #0c0d0d;
-    transition: 1.3s ease;
   }
 }

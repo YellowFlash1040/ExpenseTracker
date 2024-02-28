@@ -48,11 +48,12 @@
   align-items: center;
   background-color: var(--main-green);
   color: #0c0d0d;
+
+  transition: background-color var(--delay) var(--timing-function);
 }
 .navLinkSignUp:hover,
 .navLinkSignUp:focus {
   background-color: var(--main-green-hover);
-  transition: background-color var(--delay) var(--timing-function);
 }
 @media only screen and (min-width: 768px) {
   .navLinkSignUp {
@@ -70,11 +71,12 @@
   align-items: center;
   border: 1px solid var(--grey-40);
   color: var(--paper);
+
+  transition: border-color var(--delay) var(--timing-function);
 }
 .navLinkSignIn:hover,
 .navLinkSignIn:focus {
   border-color: rgba(14, 243, 135);
-  transition: border-color var(--delay) var(--timing-function);
 }
 @media only screen and (min-width: 768px) {
   .navLinkSignIn {
