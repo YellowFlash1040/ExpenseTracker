@@ -1,3 +1,12 @@
+.homePageWrapperLogo {
+  height: 63px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-direction: row;
+  text-align: center;
+}
+
 .wrapperLogo {
   height: 63px;
   display: flex;
