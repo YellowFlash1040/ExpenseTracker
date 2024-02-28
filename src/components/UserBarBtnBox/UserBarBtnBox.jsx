@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styles from "./UserBarBtnBox.module.css"
 import { useSelector } from "react-redux"
 import { selectAvatarUrl, selectName } from "@/redux/user/slice"
@@ -32,6 +32,24 @@ export const UserBarBtnBox = ({
     setIsVisibleLogout(true)
     onClose(true)
   }
+
+  const dropdownRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false)
+        setrotated(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
+
   return (
     <div className={styles.boxAbsolute}>
       <div className={styles.wrapperSummary}>
@@ -56,7 +74,13 @@ export const UserBarBtnBox = ({
         >
           <DropIcon className={styles.dropIcon} />
         </button>
-        <ul className={isOpen ? styles.listDrop : styles.listNone}>
+        <ul
+          // className={isOpen ? styles.listDrop : styles.listNone}
+          className={clsx(styles.customDropDown, {
+            [styles.visibleCustomDropDown]: isOpen,
+          })}
+          ref={dropdownRef}
+        >
           <li className={styles.itemDrop}>
             <button className={styles.buttonStyle} onClick={handleProfile}>
               <UserBarIcon className={styles.iconUserHower} />
