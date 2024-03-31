@@ -1,4 +1,4 @@
-Live page: https://expense-tracker-2024.vercel.app/
+Live page: https://expense-tracker-2024.vercel.app
 
 It is a team project that I did with my classmates during my studies.
 
